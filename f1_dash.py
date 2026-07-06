@@ -1,11 +1,15 @@
-Pitwall CLI
+import requests
+import argparse
+from rich.console import Console
+from rich.table import Table
 
-terminal dashboard for Formula 1. 
+console = Console()
 
-Built with Python and the `rich` library, Pitwall CLI fetches real-time driver standings, upcoming race schedules, and calculates heuristic win probabilities in the terminal.
+def main():
+    parser = argparse.ArgumentParser(description="F1 Terminal Dashboard")
+    parser.add_argument("--standings", action="store_true", help="Show current driver standings")
+    parser.add_argument("--schedule", action="store_true", help="Show the upcoming race schedule")
+    args = parser.parse_args()
 
-Features
-* Live Standings: Current victories, points, and constructor information.* Race Schedule: This is the current season's full schedule.
-A unique statistical approach called Predictive Analytics (WIP) determines momentum and win odds for the upcoming race.
-Completely Completely Completely Completely Completely Completely Completely Completely Completely Completely Completely Colourized.
-
+if __name__ == "__main__":
+    main()
