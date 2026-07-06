@@ -11,6 +11,12 @@ def get_standings():
     standings = response['MRData']['StandingsTable']['StandingsLists'][0]['DriverStandings']
     return standings
 
+def get_schedule():
+    url = "https://api.jolpi.ca/ergast/f1/current.json"
+    response = requests.get(url).json()
+    races = response['MRData']['RaceTable']['Races']
+    return races
+
 def main():
     parser = argparse.ArgumentParser(description="F1 Terminal Dashboard")
     parser.add_argument("--standings", action="store_true", help="Show current driver standings")
