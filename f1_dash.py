@@ -17,6 +17,25 @@ def get_schedule():
     races = response['MRData']['RaceTable']['Races']
     return races
 
+def print_standings(standings):
+    table = Table(title="🏎️ Current F1 Driver Standings")
+    table.add_column("Pos", justify="right", style="cyan", no_wrap=True)
+    table.add_column("Driver", style="magenta")
+    table.add_column("Constructor", style="green")
+    table.add_column("Points", justify="right", style="yellow")
+    table.add_column("Wins", justify="right", style="red")
+
+    for driver in standings:
+        table.add_row(
+            driver['position'],
+            f"{driver['Driver']['givenName']} {driver['Driver']['familyName']}",
+            driver['Constructors'][0]['name'],
+            driver['points'],
+            driver['wins']
+        )
+    
+    console.print(table)
+
 def main():
     parser = argparse.ArgumentParser(description="F1 Terminal Dashboard")
     parser.add_argument("--standings", action="store_true", help="Show current driver standings")
